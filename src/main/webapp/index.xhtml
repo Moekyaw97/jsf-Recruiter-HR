@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+<ui:composition template="/template/template.xhtml">
+	<ui:define name="content">
+		<div class="row mt-5">
+			<div class="col-8 offset-2">
+				<div class="card">
+					<div class="card-header py-4 text-center bg-gradient-secondary">
+						<h4 class="m-0 text-white">
+							<i class="fas fa-meh"></i>&nbsp;Login&nbsp;<i
+								class="fas fa-grin-squint"></i>
+						</h4>
+					</div>
+					<div class="card-body ">
+						<h:form styleClass="form">
+							<h:messages styleClass="text-danger" />
+							<span class="text-danger"> ${errormessage!=null ?
+								errormeassage:''}</span>
+							<div class="form-group">
+								<h:outputLabel value="User Name" styleClass="pr-3" />
+								<h:inputText value="#{recruiterBean.username}"
+									styleClass="form-control mr-2"
+									validatorMessage="Please Enter Username" id="name">
+									<f:validateRequired></f:validateRequired>
+								</h:inputText>
+
+							</div>
+
+							<div class="form-group">
+								<h:outputLabel value="Password" styleClass="pr-3" />
+								<h:inputSecret value="#{recruiterBean.password}"
+									styleClass="form-control mr-2"
+									validatorMessage="Too weak password" id="pass">
+									<f:validateLength minimum="3"></f:validateLength>
+								</h:inputSecret>
+
+							</div>
+
+							<h:commandButton action="#{recruiterBean.authenticateUser()}"
+								actionListener="#{recruiterBean.checkUser()}" value="Login"
+								styleClass="btn btn-success float-right" />
+						</h:form>
+						Don't have account ?
+						<h:link value="Register" outcome="/views/recruiter-add" />
+						Now
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</ui:define>
+</ui:composition>
+</html>

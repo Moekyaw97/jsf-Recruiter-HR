@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+<ui:composition template="/template/template.xhtml">
+	<ui:define name="title">Township</ui:define>
+	<ui:define name="subtitle"></ui:define>
+	<hr />
+	<ui:define name="content">
+		<div class="mb-5">
+			<h:link value="Add" outcome="/views/township-add"
+				styleClass="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm float-right">
+				<i class="fas fa-plus"></i>
+			</h:link>
+		</div>
+
+
+		<div class="card shadow mb-4">
+			<div class="card-header">
+				<span class="font-weight-bold">#{townshipBean.township.id==0
+					? 'Add New Township':'Edit Township'}</span>
+			</div>
+
+			<div class="card-body">
+				<div class="table-responsive">
+
+
+					<!-- category list -->
+					<h:dataTable styleClass="table table-striped table-dark"
+						value="#{townshipBean.townList}" var="t">
+						<h:column>
+							<f:facet name="header">ID</f:facet>
+				#{t.id}
+				</h:column>
+						<h:column>
+							<f:facet name="header">Township Name</f:facet>
+				#{t.name}
+				</h:column>
+						<h:column>
+							<h:link value="Edit" outcome="/views/township-add"
+								styleClass="btn btn-info">
+								<f:param name="townshipid" value="#{t.id}"></f:param>
+							</h:link>
+
+						</h:column>
+						<h:column>
+							<h:form>
+								<h:commandLink action="#{townshipBean.removeTownship(t.id)}"
+									value="Delete" styleClass="btn btn-danger" />
+							</h:form>
+						</h:column>
+
+					</h:dataTable>
+
+				</div>
+			</div>
+		</div>
+	</ui:define>
+</ui:composition>
+</html>

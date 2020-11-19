@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+<ui:composition template="/template/template.xhtml">
+	<ui:define name="title">Company</ui:define>
+	<ui:define name="subtitle"></ui:define>
+	<hr />
+	<ui:define name="content">
+
+		<div class="card">
+			<div class="card-header py-4 text-center">
+				<span class="font-weight-bold ">#{companyBean.company.id==0 ?
+					'Add New Company':'Edit Company'}</span>
+	
+			</div>
+			<div class="card-body">
+				<h:form styleClass="form">
+					<h:inputHidden value="#{companyBean.company.id}" />
+					<!-- <h:inputHidden value="#{companyBean.company.entryBy.id}" /> -->
+					<div class="row mx-auto my-auto">
+						<div class="col-lg-6">
+							<div class="form-group">
+								<h:outputLabel value="Company Name :" styleClass="mr-5" />
+								<h:inputText value="#{companyBean.company.name}"
+									styleClass="form-control" p:required="required">
+								</h:inputText>
+							</div>
+							<div class="form-group">
+								<h:outputLabel value="Company Address :" />
+								<h:inputText value="#{companyBean.company.address}"
+									styleClass="form-control" p:required="required">
+								</h:inputText>
+							</div>
+							<div class="form-group">
+								<h:outputLabel value="Website :" />
+								<h:inputText value="#{companyBean.company.website}"
+									styleClass="form-control" p:required="required">
+								</h:inputText>
+							</div>
+							<div class="form-group">
+								<h:outputLabel value="Email :" />
+								<h:inputText value="#{companyBean.company.email}"
+									styleClass="form-control" p:required="required">
+								</h:inputText>
+							</div>
+							<div class="form-group">
+								<h:outputLabel value="is_hot ?" >
+								<h:inputText
+									value="#{companyBean.company.ishot == yes ? 'checked' : ''}"
+									styleClass="form-control" p:type="checkbox">
+								</h:inputText>
+								</h:outputLabel>
+							</div>
+						</div>
+						<div class="col-lg-6">
+							<div class="form-group">
+								<h:outputLabel value="Phone 1 :" />
+								<h:inputText value="#{companyBean.company.phone1}"
+									styleClass="form-control">
+								</h:inputText>
+							</div>
+							<div class="form-group">
+								<h:outputLabel value="Phone 2 :" />
+								<h:inputText value="#{companyBean.company.phone2}"
+									styleClass="form-control">
+								</h:inputText>
+							</div>
+							<div class="form-group">
+								<h:outputLabel value="Owner Name :" />
+								<h:inputText value="#{companyBean.company.ownerName}"
+									styleClass="form-control">
+								</h:inputText>
+							</div>
+
+							<div class="form-group">
+								<h:outputLabel value="Township" />
+								<h:selectOneMenu value="#{companyBean.company.township}"
+									styleClass="form-control">
+									<f:selectItems value="#{townshipBean.townList}"
+										itemValue="#{t}" itemLabel="#{t.name}" var="t"></f:selectItems>
+									<f:converter binding="#{townshipConverter}" ></f:converter>
+								</h:selectOneMenu>
+							</div>
+
+							<div class="form-group">
+								<h:outputLabel value="Remark :" />
+								<h:inputTextarea value="#{companyBean.company.remark}"
+									styleClass="form-control">
+								</h:inputTextarea>
+							</div>
+						</div>
+					</div>
+
+
+					<h:commandButton action="#{companyBean.saveCompany()}" value="Save"
+						styleClass="btn btn-success float-right" />
+				</h:form>
+			</div>
+		</div>
+
+	</ui:define>
+</ui:composition>
+</html>
