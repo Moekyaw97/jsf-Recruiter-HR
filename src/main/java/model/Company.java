@@ -171,4 +171,112 @@ public class Company implements Serializable {
 		this.remark = remark;
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((address == null) ? 0 : address.hashCode());
+		result = prime * result + ((email == null) ? 0 : email.hashCode());
+		result = prime * result + ((entryBy == null) ? 0 : entryBy.hashCode());
+		result = prime * result + ((entry_date == null) ? 0 : entry_date.hashCode());
+		result = prime * result + id;
+		result = prime * result + ((ishot == null) ? 0 : ishot.hashCode());
+		result = prime * result + ((modifyBy == null) ? 0 : modifyBy.hashCode());
+		result = prime * result + ((modifyDate == null) ? 0 : modifyDate.hashCode());
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + ((ownerName == null) ? 0 : ownerName.hashCode());
+		result = prime * result + ((phone1 == null) ? 0 : phone1.hashCode());
+		result = prime * result + ((phone2 == null) ? 0 : phone2.hashCode());
+		result = prime * result + ((remark == null) ? 0 : remark.hashCode());
+		result = prime * result + ((township == null) ? 0 : township.hashCode());
+		result = prime * result + ((website == null) ? 0 : website.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Company other = (Company) obj;
+		if (address == null) {
+			if (other.address != null)
+				return false;
+		} else if (!address.equals(other.address))
+			return false;
+		if (email == null) {
+			if (other.email != null)
+				return false;
+		} else if (!email.equals(other.email))
+			return false;
+		if (entryBy == null) {
+			if (other.entryBy != null)
+				return false;
+		} else if (!entryBy.equals(other.entryBy))
+			return false;
+		if (entry_date == null) {
+			if (other.entry_date != null)
+				return false;
+		} else if (!entry_date.equals(other.entry_date))
+			return false;
+		if (id != other.id)
+			return false;
+		if (ishot == null) {
+			if (other.ishot != null)
+				return false;
+		} else if (!ishot.equals(other.ishot))
+			return false;
+		if (modifyBy == null) {
+			if (other.modifyBy != null)
+				return false;
+		} else if (!modifyBy.equals(other.modifyBy))
+			return false;
+		if (modifyDate == null) {
+			if (other.modifyDate != null)
+				return false;
+		} else if (!modifyDate.equals(other.modifyDate))
+			return false;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
+		if (ownerName == null) {
+			if (other.ownerName != null)
+				return false;
+		} else if (!ownerName.equals(other.ownerName))
+			return false;
+		if (phone1 == null) {
+			if (other.phone1 != null)
+				return false;
+		} else if (!phone1.equals(other.phone1))
+			return false;
+		if (phone2 == null) {
+			if (other.phone2 != null)
+				return false;
+		} else if (!phone2.equals(other.phone2))
+			return false;
+		if (remark == null) {
+			if (other.remark != null)
+				return false;
+		} else if (!remark.equals(other.remark))
+			return false;
+		if (township == null) {
+			if (other.township != null)
+				return false;
+		} else if (!township.equals(other.township))
+			return false;
+		if (website == null) {
+			if (other.website != null)
+				return false;
+		} else if (!website.equals(other.website))
+			return false;
+		return true;
+	}
+	
+	
+
 }

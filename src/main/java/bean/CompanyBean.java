@@ -1,23 +1,30 @@
 package bean;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.enterprise.context.RequestScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
 import model.Company;
 import service.CompanyService;
 
 @Named
-@RequestScoped
-public class CompanyBean {
+@ViewScoped
+public class CompanyBean implements Serializable{
+
+	private static final long serialVersionUID = 1L;
+
 	private Company company;
+	
+	/* private boolean isHot; */
 
 	private List<Company> comList;
+	
 
 	@EJB
 	private CompanyService service;
@@ -32,18 +39,18 @@ public class CompanyBean {
 		if (id != null) {
 			
 			company = service.findById(Integer.parseInt(id));
-			System.out.println("enty by in init :" + company.getEntryBy());
+			/* isHot=(company.getIshot().equals("yes")) ? true:false; */
 		}else {
 
 			company = new Company();
-			System.out.println("this is new company");
+			/* hotList=service.findHot(); */
 		}
 			
 	}
 
 	public String saveCompany() {
 
-		System.out.println("entry by in savecompany:"+company.getEntryBy());
+		 company.setIshot("yes"); 
 		service.save(company);
 
 		return "/views/companies?faces-redirect=true";

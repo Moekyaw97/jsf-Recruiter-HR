@@ -1,12 +1,95 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"> 
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
 
-<h:head></h:head> 
-<body> 
+<ui:composition template="/template/template.xhtml">
+	<ui:define name="title">Joborder</ui:define>
+	<ui:define name="subtitle"></ui:define>
+	<hr />
+	<ui:define name="content">
 
-</body> 
+		<div class="card">
+			<div class="card-header py-4 text-center bg-dark">
+				<span class="font-weight-bold text-warning">#{joborderBean.joborder.id==0 ?
+					'Add New Joborder':'Edit Joborder'}</span>
+	
+			</div>
+			<div class="card-body">
+				<h:form styleClass="form">
+					<h:inputHidden value="#{joborderBean.joborder.id}" />
+			
+					<div class="row mx-auto my-auto">
+						<div class="col-lg-6">
+							<div class="form-group">
+								<h:outputLabel value="Job Position :" styleClass="mr-5" />
+								<h:inputText value="#{joborderBean.joborder.job_position}"
+									styleClass="form-control" p:required="required">
+								</h:inputText>
+							</div>
+							<div class="form-group">
+								<h:outputLabel value="Job Description :" />
+								
+								<h:inputTextarea value="#{joborderBean.joborder.job_description}"
+									styleClass="form-control" p:required="required">
+								</h:inputTextarea>
+							</div>
+							<div class="form-group">
+								<h:outputLabel value="Basic Salary :" />
+								<h:inputText value="#{joborderBean.joborder.basic_salary}"
+									styleClass="form-control" p:required="required">
+								</h:inputText>
+							</div>
+							<div class="form-group">
+								<h:outputLabel value="Total Employee :" />
+								<h:inputText value="#{joborderBean.joborder.total_employee}"
+									styleClass="form-control" p:required="required">
+								</h:inputText>
+							</div>
+							<div class="form-group">
+								<h:outputLabel value="is_active ?" >
+								<h:inputText
+									value="#{joborderBean.joborder.is_active == yes ? 'checked' : ''}"
+									styleClass="form-control" p:type="checkbox">
+								</h:inputText>
+								</h:outputLabel>
+							</div>
+						</div>
+						<div class="col-lg-6">
+						
+						<div class="form-group">
+								<h:outputLabel value="Company Name" />
+								<h:selectOneMenu value="#{joborderBean.joborder.companyId}"
+									styleClass="form-control">
+									<f:selectItems value="#{companyBean.comList}"
+										itemValue="#{c}" itemLabel="#{c.name}" var="c"></f:selectItems>
+										<f:converter binding="#{companyConverter}" ></f:converter>	
+								</h:selectOneMenu>
+							</div>
+
+							<div class="form-group">
+								<h:outputLabel value="Job Location" />
+								<h:selectOneMenu value="#{joborderBean.joborder.job_location}"
+									styleClass="form-control">
+									<f:selectItems value="#{townshipBean.townList}"
+										itemValue="#{t}" itemLabel="#{t.name}" var="t"></f:selectItems>
+									<f:converter binding="#{townshipConverter}" ></f:converter>
+								</h:selectOneMenu>
+							</div>
+
+							
+						</div>
+					</div>
+
+
+					<h:commandButton action="#{joborderBean.saveJoborder()}" value="Save"
+						styleClass="btn btn-success float-right" />
+				</h:form>
+			</div>
+		</div>
+
+	</ui:define>
+</ui:composition>
 </html>

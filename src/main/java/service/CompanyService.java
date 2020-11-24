@@ -3,7 +3,7 @@ package service;
 import java.time.LocalDate;
 import java.util.List;
 
-import javax.ejb.EJB;
+
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -11,7 +11,7 @@ import javax.persistence.PersistenceContext;
 
 import bean.RecruiterBean;
 import model.Company;
-import model.Recruiter;
+
 
 @Stateless
 public class CompanyService {
@@ -20,12 +20,10 @@ public class CompanyService {
 
 	@Inject
 	private RecruiterBean recrubean;
-	@EJB
-	private RecruiterService recru;
-
-	public void save(Company company) {
 	
-		System.out.println("entry by in save: "+company.getEntryBy());
+	public void save(Company company) {
+
+		
 		if (company.getId() == 0) {
 			company.setEntryBy(recrubean.getRecruiter());
 			company.setEntry_date(LocalDate.now());
@@ -33,15 +31,11 @@ public class CompanyService {
 		}
 
 		else {
-			
-			Recruiter re=recru.findById(company.getEntryBy().getId());
-			/* company = findById(company.getId()); */
-			company.setEntryBy(re);
-			company.setEntry_date(LocalDate.now());
+
+		
 			company.setModifyBy(recrubean.getRecruiter());
 			company.setModifyDate(LocalDate.now());
 			em.merge(company);
-			
 
 		}
 
@@ -52,10 +46,9 @@ public class CompanyService {
 	}
 
 	public Company findById(int id) {
-		Company c=em.find(Company.class, id);
-	System.out.println("entry in findById:" + c.getEntryBy() );
-	return c;
-	
+
+		return em.find(Company.class, id);
+
 	}
 
 	public void delete(int cid) {
@@ -63,5 +56,10 @@ public class CompanyService {
 		em.remove(c);
 
 	}
+
+	/*
+	 * public Object findHot(String hotList) { return em.find(Company.class,
+	 * hotList); }
+	 */
 
 }

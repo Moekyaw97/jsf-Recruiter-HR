@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Column;
 
 @Entity
 public class Joborder implements Serializable{
@@ -19,6 +20,9 @@ public class Joborder implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String job_position;
+	/* @ColumnTransformer(name="job_description", columnDefinition="TEXT") */
+	
+	@Column(columnDefinition = "TEXT")
 	private String job_description;
 	private int basic_salary;
 	private int total_employee;

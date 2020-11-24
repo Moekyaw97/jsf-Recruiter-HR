@@ -5,6 +5,7 @@
 	xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
 	xmlns:h="http://xmlns.jcp.org/jsf/html">
 
+
 <ui:composition template="/template/template.xhtml">
 	<ui:define name="title">Company</ui:define>
 	<ui:define name="subtitle"></ui:define>
@@ -18,90 +19,158 @@
 		</div>
 
 
-
 		<div class="row">
-		<div class="col-lg-12">
-			<div class="card shadow mb-4">
-				<div class="card-header py-3">
-					<h6 class="m-0 font-weight-bold text-primary">
-						<i class="fas fa-user"></i> Company Profile
-					</h6>
-				</div>
-				<div class="card-body">
-				<div class="table-responsive">
+			<div class="col-lg-6">
+				<div class="card shadow mb-4">
+					<div class="card-header py-3 bg-dark">
+						<h6 class="m-0 font-weight-bold text-warning">
+							<i class="fas fa-user"></i> Company Profile
+						</h6>
+					</div>
+					<div class="card-body">
+						<div class="table-responsive">
+							<table class="table table-borderless">
+								<tbody>
+									<tr>
+										<th scope="row">Company</th>
+										<td>#{companyBean.company.name}</td>
 
+									</tr>
+									<tr>
+										<th scope="row">Phone 1</th>
+										<td>#{companyBean.company.phone1}</td>
 
-					<h:dataTable styleClass="table table-striped table-dark text-left"
-						value="#{companyBean.company}" >
+									</tr>
+									<tr>
+										<th scope="row">Phone 2</th>
+										<td>#{companyBean.company.phone2}</td>
 
+									</tr>
+									<tr>
+										<th scope="row">Email</th>
+										<td>#{companyBean.company.email}</td>
 
-						<h:column>
-							<f:facet name="header">Company</f:facet>
-				#{companyBean.company.name}
-				</h:column>
-						<h:column>
-							<f:facet name="header">Phone 1</f:facet>
-				#{companyBean.company.phone1}
-				</h:column>
-						<h:column>
-							<f:facet name="header">Phone 1</f:facet>
-				#{companyBean.company.phone2}
-				</h:column>
-						<h:column>
-							<f:facet name="header">Email</f:facet>
-				#{companyBean.company.email}
-				</h:column>
-						<!-- <h:column>
-							<f:facet name="header">Website</f:facet>
-				#{companyBean.company.website}
-				</h:column> -->
-						<h:column>
-							<f:facet name="header">Township</f:facet>
-				#{companyBean.company.township.name}
-				</h:column>
-						<h:column>
-							<f:facet name="header">Owner</f:facet>
-				#{companyBean.company.ownerName}
-				</h:column>
-						<h:column>
-							<f:facet name="header">Address</f:facet>
-				#{companyBean.company.address}
-				</h:column>
-					</h:dataTable>
-		
-					<h:dataTable styleClass="table table-striped table-dark text-left"
-					value="#{companyBean.company}" >
-						<h:column>
-							<f:facet name="header">Entry By</f:facet>
-				#{companyBean.company.entryBy.name}
-				</h:column>
-						<h:column>
-							<f:facet name="header">Entry Date</f:facet>
-				#{companyBean.company.entry_date}
-				</h:column>
-						<h:column>
-							<f:facet name="header">Modify By</f:facet>
-				#{companyBean.company.modifyBy.name}
-				</h:column>
-						<h:column>
-							<f:facet name="header">Modify Date</f:facet>
-				#{companyBean.company.modifyDate}
-				</h:column>
-						<h:column>
-							<f:facet name="header">Misc.Notes</f:facet>
-				#{companyBean.company.remark}
-				</h:column>
+									</tr>
+									<tr>
+										<th scope="row">Website</th>
+										<td>#{companyBean.company.website}</td>
 
+									</tr>
+									<tr>
+										<th scope="row">Township</th>
+										<td>#{companyBean.company.township.name}</td>
 
-					</h:dataTable>
+									</tr>
+									<tr>
+										<th scope="row">Owner</th>
+										<td>#{companyBean.company.ownerName}</td>
 
-	
+									</tr>
+									<tr>
+										<th scope="row">Address</th>
+										<td>#{companyBean.company.address}</td>
+
+									</tr>
+									<tr>
+										<th scope="row">Is_hot</th>
+										<td>#{companyBean.company.ishot}</td>
+
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
 				</div>
 			</div>
+
+			<div class="col-lg-6">
+				<div class="card shadow mb-4">
+					<div class="card-header py-3 bg-dark">
+						<h6 class="m-0 font-weight-bold text-warning">
+							<i class="fas fa-user"></i> Other Information
+						</h6>
+					</div>
+					<div class="card-body">
+						<div class="table-responsive">
+							<table class="table table-borderless">
+								<tbody>
+									<tr>
+										<th scope="row">Entry By</th>
+										<td>#{companyBean.company.entryBy.name}</td>
+
+									</tr>
+									<tr>
+										<th scope="row">Entry Date</th>
+										<td>#{companyBean.company.entry_date}</td>
+
+									</tr>
+									<tr>
+										<th scope="row">Modify By</th>
+										<td>#{companyBean.company.modifyBy.name}</td>
+
+									</tr>
+									<tr>
+										<th scope="row">Modify Date</th>
+										<td>#{companyBean.company.modifyDate}</td>
+
+									</tr>
+									<tr>
+										<th scope="row">Misc.notes</th>
+										<td>#{companyBean.company.remark}</td>
+
+									</tr>
+
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
 			</div>
+
+			<div class="col-lg-12">
+				<div class="card shadow mb-4">
+					<div class="card-header py-3 bg-dark">
+						<h6 class="m-0 font-weight-bold text-warning">
+							<i class="fas fa-user"></i> Job Order
+						</h6>
+					</div>
+					<div class="card-body">
+						<div class="table-responsive">
+							<h:dataTable styleClass="table table-striped"
+								value="#{companyBean.company.id==joborderBean.joborder.companyId.id}"
+								var="jc">
+								<h:column>
+									<f:facet name="header">Company Name</f:facet>
+				#{joborderBean.joborder.companyId.name}
+				</h:column>
+								<h:column>
+									<f:facet name="header">Job Position</f:facet>
+				#{joborderBean.joborder.job_position}
+				</h:column>
+								<h:column>
+									<f:facet name="header">Basic Salary</f:facet>
+				#{joborderBean.joborder.basic_salary}
+				</h:column>
+								<h:column>
+									<f:facet name="header">Total Employee</f:facet>
+				#{joborderBean.joborder.total_employee}
+				</h:column>
+								<h:column>
+									<f:facet name="header">Job Location</f:facet>
+				#{joborderBean.joborder.job_location.name}
+				</h:column>
+								<h:column>
+									<f:facet name="header">Job Description</f:facet>
+				#{joborderBean.joborder.job_description}
+				</h:column>
+							</h:dataTable>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
 		</div>
-
-	</div>
 
 
 	</ui:define>

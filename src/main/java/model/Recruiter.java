@@ -10,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 
+
+
 @NamedQuery(name = "Recruiter.login", query = "SELECT r FROM Recruiter r WHERE r.name=:name AND r.password=:pass")
 @Entity
 public class Recruiter implements Serializable{

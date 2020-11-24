@@ -19,8 +19,8 @@
 
 
 		<div class="card shadow mb-4">
-			<div class="card-header">
-				<span class="font-weight-bold">#{recruiterBean.recruiter.id==0
+			<div class="card-header bg-dark">
+				<span class="font-weight-bold text-warning">#{recruiterBean.recruiter.id==0
 					? 'Add New Recruiter':'Edit Recruiter'}</span>
 			</div>
 
@@ -29,7 +29,7 @@
 
 
 					<!-- category list -->
-					<h:dataTable styleClass="table table-striped table-dark"
+					<h:dataTable styleClass="table table-striped"
 						value="#{recruiterBean.recruList}" var="r">
 						<h:column>
 							<f:facet name="header">ID</f:facet>

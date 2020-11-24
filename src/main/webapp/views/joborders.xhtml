@@ -11,7 +11,7 @@
 	<hr />
 	<ui:define name="content">
 		<div class="mb-5">
-			<h:link value="Add" outcome="/views/company-add"
+			<h:link value="Add" outcome="/views/joborder-add"
 				styleClass="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm float-right">
 				<i class="fas fa-plus"></i>
 			</h:link>
@@ -19,54 +19,57 @@
 
 
 		<div class="card shadow mb-4">
-			<div class="card-header">
-				<span class="font-weight-bold">Joborder List</span>
+			<div class="card-header bg-dark">
+				<span class="font-weight-bold text-warning">Joborder List</span>
 			</div>
 
 			<div class="card-body">
 				<div class="table-responsive">
 
-
-					<!-- category list -->
-					<h:dataTable styleClass="table table-striped table-dark"
-						value="#{joborderBean.comList}" var="j">
+					<h:dataTable styleClass="table table-striped"
+						value="#{joborderBean.jobList}" var="j">
 						<h:column>
 							<f:facet name="header">ID</f:facet>
 				#{j.id}
 				</h:column>
+
+						<h:column>
+							<f:facet name="header">Position</f:facet>
+				#{j.job_position}
+				</h:column>
+						<h:column>
+							<f:facet name="header">Total</f:facet>
+				#{j.total_employee}
+				</h:column>
 						<h:column>
 							<f:facet name="header">Company Name</f:facet>
-				#{j.name}
+							<h:link value="#{j.companyId.name}" class="text-warning"
+								outcome="/views/company-detail">
+								<f:param name="companyid" value="#{j.companyId.id}"></f:param>
+								<f:param name="joborderid" value="#{j.id}"></f:param>
+							</h:link>
+						</h:column>
+						<h:column>
+							<f:facet name="header">Job Location</f:facet>
+				#{j.job_location.name}
 				</h:column>
 						<h:column>
-							<f:facet name="header">Phone 1</f:facet>
-				#{c.phone1}
-				</h:column>
-						<h:column>
-							<f:facet name="header">Email</f:facet>
-				#{c.email}
-				</h:column>
-						<h:column>
-							<f:facet name="header">Township</f:facet>
-				#{c.township.name}
-				</h:column>
-						<h:column>
-							<h:link value="Detail" outcome="/views/company-detail"
+							<h:link value="Detail" outcome="/views/joborder-detail"
 								styleClass="btn btn-info">
-								<f:param name="companyid" value="#{c.id}"></f:param>
+								<f:param name="joborderid" value="#{j.id}"></f:param>
 							</h:link>
 
 						</h:column>
 						<h:column>
-							<h:link value="Edit" outcome="/views/company-add"
+							<h:link value="Edit" outcome="/views/joborder-add"
 								styleClass="btn btn-warning">
-								<f:param name="companyid" value="#{c.id}"></f:param>
+								<f:param name="joborderid" value="#{j.id}"></f:param>
 							</h:link>
 
 						</h:column>
 						<h:column>
 							<h:form>
-								<h:commandLink action="#{companyBean.removeCompany(c.id)}"
+								<h:commandLink action="#{joborderBean.removeJoborder(j.id)}"
 									value="Delete" styleClass="btn btn-danger" />
 							</h:form>
 						</h:column>

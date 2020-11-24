@@ -19,8 +19,8 @@
 
 
 		<div class="card shadow mb-4">
-			<div class="card-header">
-				<span class="font-weight-bold">#{townshipBean.township.id==0
+			<div class="card-header bg-dark">
+				<span class="font-weight-bold text-warning">#{townshipBean.township.id==0
 					? 'Add New Township':'Edit Township'}</span>
 			</div>
 
@@ -29,7 +29,7 @@
 
 
 					<!-- category list -->
-					<h:dataTable styleClass="table table-striped table-dark"
+					<h:dataTable styleClass="table table-striped"
 						value="#{townshipBean.townList}" var="t">
 						<h:column>
 							<f:facet name="header">ID</f:facet>
