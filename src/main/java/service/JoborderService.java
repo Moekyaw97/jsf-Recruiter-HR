@@ -7,6 +7,7 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 import bean.RecruiterBean;
 import model.Joborder;
@@ -54,5 +55,11 @@ public class JoborderService {
 		em.remove(j);
 
 	}
+	public List<Joborder> findbyCompany(int companyid) {
+		TypedQuery<Joborder> query = em.createNamedQuery("Joborder.findbyCompany", Joborder.class);
+		query.setParameter("companyid", companyid);
+		return query.getResultList();
+	}
+
 
 }

@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+<ui:composition template="/template/template.xhtml">
+	<ui:define name="title">Candidate</ui:define>
+	<ui:define name="subtitle"></ui:define>
+	<hr />
+	<ui:define name="content">
+
+		<div class="card">
+			<div class="card-header py-4 text-center bg-dark">
+				<span class="font-weight-bold text-warning">#{candidateBean.candidate.id==0
+					? 'Add New Candidate':'Edit Candidate'}</span>
+
+			</div>
+			<div class="card-body">
+				<h:form styleClass="form" enctype="multipart/form-data">
+					<h:messages></h:messages>
+					<h:inputHidden value="#{candidateBean.candidate.id}" />
+
+					<div class="row mx-auto my-auto">
+						<div class="col-lg-6">
+							<div class="form-group">
+								<h:outputLabel value="Name :" styleClass="mr-5" />
+								<h:inputText value="#{candidateBean.candidate.name}"
+									styleClass="form-control" p:required="required">
+								</h:inputText>
+							</div>
+							<div class="form-group">
+								<h:outputLabel value="Phone :" />
+								<h:inputText value="#{candidateBean.candidate.phone}"
+									styleClass="form-control" p:required="required">
+								</h:inputText>
+							</div>
+							<div class="form-group">
+								<h:outputLabel value="Township" />
+								<h:selectOneMenu value="#{candidateBean.candidate.township}"
+									styleClass="form-control">
+									<f:selectItems value="#{townshipBean.townList}"
+										itemValue="#{t}" itemLabel="#{t.name}" var="t"></f:selectItems>
+									<f:converter binding="#{townshipConverter}"></f:converter>
+								</h:selectOneMenu>
+							</div>
+
+							<div class="form-group">
+								<h:outputLabel value="Expected Salary :" />
+								<h:inputText value="#{candidateBean.candidate.expectedSalary}"
+									styleClass="form-control" p:type="number">
+								</h:inputText>
+							</div>
+							<div class="form-group">
+								<h:outputLabel value="Key Skills :" />
+								<h:inputText value="#{candidateBean.candidate.key_skills}"
+									styleClass="form-control" p:required="required">
+								</h:inputText>
+							</div>
+
+							<div class="form-group">
+								<h:outputLabel value="Email :" />
+								<h:inputText value="#{candidateBean.candidate.email}"
+									styleClass="form-control" p:required="required">
+								</h:inputText>
+							</div>
+
+						</div>
+						<div class="col-lg-6">
+
+
+							<div class="form-group">
+								<h:outputLabel value="Availablity Type" />
+								<h:selectOneMenu value="#{candidateBean.candidate.ava}"
+									styleClass="form-control">
+									<f:selectItems value="#{avaBean.avaList}" itemValue="#{a}"
+										itemLabel="#{a.description}" var="a"></f:selectItems>
+									<f:converter binding="#{avaConverter}"></f:converter>
+								</h:selectOneMenu>
+							</div>
+							<div class="form-group">
+								<h:outputLabel value="CV form" />
+								<br />
+								<h:inputFile value="#{candidateBean.cv_form}" alt="upload file"></h:inputFile>
+							</div>
+							<div class="form-group mt-5">
+								<div class="form-check">
+									<h:selectBooleanCheckbox
+										value="#{candidateBean.candidate.is_active}"
+										styleClass="form-check-input " />
+									Is Active?
+								</div>
+							</div>
+
+							<div class="form-group mt-5">
+								<h:commandButton action="#{candidateBean.saveCandidate()}"
+									value="Save" styleClass="btn btn-success float-right">
+									<f:ajax execute="@form"
+										listener="#{candidateBean.uploadFile()}"></f:ajax>
+								</h:commandButton>
+							</div>
+
+
+						</div>
+					</div>
+
+
+
+				</h:form>
+
+			</div>
+		</div>
+
+	</ui:define>
+</ui:composition>
+</html>

@@ -47,13 +47,13 @@
 									styleClass="form-control" p:required="required">
 								</h:inputText>
 							</div>
-							<!-- <div class="form-group">
-								<h:outputLabel value="is_hot ?">
-									<h:inputBooleanCheckbox value="#{companyBean.company.ishot}"
-										styleClass="custom-control-input" p:type="checkbox">
-									</h:inputBooleanCheckbox>
-								</h:outputLabel>
-							</div> -->
+							<div class="form-group">
+								<div class="form-check">
+									<h:selectBooleanCheckbox value="#{companyBean.company.ishot}"
+										id="ishot" styleClass="form-check-input " />
+									Is Hot?
+								</div>
+							</div>
 						</div>
 						<div class="col-lg-6">
 							<div class="form-group">

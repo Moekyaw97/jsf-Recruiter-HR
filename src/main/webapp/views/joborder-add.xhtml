@@ -49,14 +49,15 @@
 								</h:inputText>
 							</div>
 							<div class="form-group">
-								<h:outputLabel value="is_active ?" >
-								<h:inputText
-									value="#{joborderBean.joborder.is_active == yes ? 'checked' : ''}"
-									styleClass="form-control" p:type="checkbox">
-								</h:inputText>
-								</h:outputLabel>
+								<div class="form-check">
+									<h:selectBooleanCheckbox value="#{joborderBean.joborder.is_active}"
+										id="isactive" styleClass="form-check-input " />
+									Is Active?
+								</div>
 							</div>
+							
 						</div>
+						
 						<div class="col-lg-6">
 						
 						<div class="form-group">

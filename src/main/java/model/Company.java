@@ -2,6 +2,7 @@ package model;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,10 +10,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 
 import model.Company;
 
 @Entity
+@NamedQuery(name="Company.findAll",query="SELECT c FROM Company c")
 public class Company implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -42,9 +46,20 @@ public class Company implements Serializable {
 	@JoinColumn(name = "modifyBy", referencedColumnName = "id")
 	private Recruiter modifyBy;
 	private LocalDate modifyDate;
+	
+	@OneToMany(mappedBy = "companyId")
+	private List<Joborder> company_joborder;
 
 	public Company() {
 		super();
+	}
+
+	public List<Joborder> getCompany_joborder() {
+		return company_joborder;
+	}
+
+	public void setCompany_joborder(List<Joborder> company_joborder) {
+		this.company_joborder = company_joborder;
 	}
 
 	public int getId() {

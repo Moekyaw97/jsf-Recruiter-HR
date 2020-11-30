@@ -73,7 +73,7 @@
 									</tr>
 									<tr>
 										<th scope="row">Is_hot</th>
-										<td>#{companyBean.company.ishot}</td>
+										<td>#{companyBean.company.ishot==true? 'yes' : 'no'}</td>
 
 									</tr>
 								</tbody>
@@ -137,31 +137,30 @@
 					<div class="card-body">
 						<div class="table-responsive">
 							<h:dataTable styleClass="table table-striped"
-								value="#{companyBean.company.id==joborderBean.joborder.companyId.id}"
-								var="jc">
+								value="#{companyBean.company_joborderlist}" var="j">
 								<h:column>
 									<f:facet name="header">Company Name</f:facet>
-				#{joborderBean.joborder.companyId.name}
+				#{j.companyId.name}
 				</h:column>
 								<h:column>
 									<f:facet name="header">Job Position</f:facet>
-				#{joborderBean.joborder.job_position}
+				#{j.job_position}
 				</h:column>
 								<h:column>
 									<f:facet name="header">Basic Salary</f:facet>
-				#{joborderBean.joborder.basic_salary}
+				#{j.basic_salary}
 				</h:column>
 								<h:column>
 									<f:facet name="header">Total Employee</f:facet>
-				#{joborderBean.joborder.total_employee}
+				#{j.total_employee}
 				</h:column>
 								<h:column>
 									<f:facet name="header">Job Location</f:facet>
-				#{joborderBean.joborder.job_location.name}
+				#{j.job_location.name}
 				</h:column>
 								<h:column>
 									<f:facet name="header">Job Description</f:facet>
-				#{joborderBean.joborder.job_description}
+				#{j.job_description}
 				</h:column>
 							</h:dataTable>
 						</div>

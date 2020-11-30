@@ -6,12 +6,12 @@
 	xmlns:h="http://xmlns.jcp.org/jsf/html">
 
 <ui:composition template="/template/template.xhtml">
-	<ui:define name="title">Joborder</ui:define>
+	<ui:define name="title">Candidates</ui:define>
 	<ui:define name="subtitle"></ui:define>
 	<hr />
 	<ui:define name="content">
 		<div class="mb-5">
-			<h:link value="Add" outcome="/views/joborder-add"
+			<h:link value="Add" outcome="/views/candidate-add"
 				styleClass="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm float-right">
 				<i class="fas fa-plus"></i>
 			</h:link>
@@ -20,58 +20,56 @@
 
 		<div class="card shadow mb-4">
 			<div class="card-header bg-dark">
-				<span class="font-weight-bold text-warning">Joborder List</span>
+				<span class="font-weight-bold text-warning">Candidates List</span>
 			</div>
 
 			<div class="card-body">
 				<div class="table-responsive">
 
 					<h:dataTable styleClass="table table-striped"
-						value="#{joborderBean.jobList}" var="j">
+						value="#{candidateBean.canList}" var="c">
 						<h:column>
 							<f:facet name="header">ID</f:facet>
-				#{j.id}
+				#{c.id}
 				</h:column>
-				<h:column>
-							<f:facet name="header">Company Name</f:facet>
-							<h:link value="#{j.companyId.name}" styleClass="btn btn-outline-info"
-								outcome="/views/company-detail">
-								<f:param name="companyid" value="#{j.companyId.id}"></f:param>
-							</h:link>
-						</h:column>
-
 						<h:column>
-							<f:facet name="header">Position</f:facet>
-							<h:link value="#{j.job_position}" outcome="/views/joborder-detail"
+							<f:facet name="header">Name</f:facet>
+							<h:link value="#{ c.name }" outcome="/views/candidate-detail"
 								styleClass="btn btn-outline-secondary">
-								<f:param name="joborderid" value="#{j.id}"></f:param>
+								<f:param name="candidateid" value="#{c.id}"></f:param>
 							</h:link>
-				
-				</h:column>
-						
-						
-						<h:column>
-							<f:facet name="header">Job Location</f:facet>
-				#{j.job_location.name}
-				</h:column>
-					<h:column>
-							<f:facet name="header">Basic Salary</f:facet>
-				#{j.basic_salary}
-				</h:column>
-						<h:column>
-							
-
 						</h:column>
 						<h:column>
-							<h:link value="Edit" outcome="/views/joborder-add"
+							<f:facet name="header">Phone</f:facet>
+				#{c.phone}
+				</h:column>
+						<h:column>
+							<f:facet name="header">Email</f:facet>
+				#{c.email}
+				</h:column>
+						<h:column>
+							<f:facet name="header">Key Skills</f:facet>
+				#{c.key_skills}
+				</h:column>
+						<h:column>
+							<f:facet name="header">Expected Salary</f:facet>
+				#{c.expectedSalary}
+				</h:column>
+						<h:column>
+							<f:facet name="header">Township</f:facet>
+				#{c.township.name}
+				</h:column>
+
+						<h:column>
+							<h:link value="Edit" outcome="/views/candidate-add"
 								styleClass="btn btn-warning">
-								<f:param name="joborderid" value="#{j.id}"></f:param>
+								<f:param name="candidateid" value="#{c.id}"></f:param>
 							</h:link>
 
 						</h:column>
 						<h:column>
 							<h:form>
-								<h:commandLink action="#{joborderBean.removeJoborder(j.id)}"
+								<h:commandLink action="#{candidateBean.removeCandidate(c.id)}"
 									value="Delete" styleClass="btn btn-danger" />
 							</h:form>
 						</h:column>

@@ -6,23 +6,24 @@
 	xmlns:h="http://xmlns.jcp.org/jsf/html">
 
 <ui:composition template="/template/template.xhtml">
-	<ui:define name="title">Joborder</ui:define>
+	<ui:define name="title">Candidate</ui:define>
 	<ui:define name="subtitle"></ui:define>
 	<hr />
 	<ui:define name="content">
 		<div class="mb-5">
-			<h:link value="Back" outcome="/views/joborders"
+			<h:link value="Back" outcome="/views/candidates"
 				styleClass="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm float-right">
 				<i class="fas fa-arrow-left"></i>
 			</h:link>
 		</div>
+
 
 		<div class="row">
 			<div class="col-lg-6">
 				<div class="card shadow mb-4">
 					<div class="card-header py-3 bg-dark">
 						<h6 class="m-0 font-weight-bold text-warning">
-							<i class="fas fa-user"></i> Joborder Detail
+							<i class="fas fa-user"></i> Candidate Profile
 						</h6>
 					</div>
 					<div class="card-body">
@@ -30,42 +31,44 @@
 							<table class="table table-borderless">
 								<tbody>
 									<tr>
-										<th scope="row">Job Position</th>
-										<td>#{joborderBean.joborder.job_position}</td>
+										<th scope="row">Name</th>
+										<td>#{candidateBean.candidate.name}</td>
+
+									</tr>
+									<tr>
+										<th scope="row">Phone</th>
+										<td>#{candidateBean.candidate.phone}</td>
 
 									</tr>
 
 									<tr>
-										<th scope="row">Basic salary</th>
-										<td>#{joborderBean.joborder.basic_salary}</td>
-
-									</tr>
-
-									<tr>
-										<th scope="row">Total employee</th>
-										<td>#{joborderBean.joborder.total_employee}</td>
+										<th scope="row">Email</th>
+										<td>#{candidateBean.candidate.email}</td>
 
 									</tr>
 									<tr>
-										<th scope="row">Company</th>
-										<td>#{joborderBean.joborder.companyId.name}</td>
+										<th scope="row">Expected Salary</th>
+										<td>#{candidateBean.candidate.expectedSalary}</td>
 
 									</tr>
 									<tr>
-										<th scope="row">Job Location</th>
-										<td>#{joborderBean.joborder.job_location.name}</td>
+										<th scope="row">Township</th>
+										<td>#{candidateBean.candidate.township.name}</td>
 
 									</tr>
 									<tr>
-										<th scope="row">Job Description</th>
-										<td>#{joborderBean.joborder.job_description}</td>
-
-									</tr>
-									<tr>
-										<th scope="row">Is_active</th>
-										<td>#{joborderBean.joborder.is_active==true? 'yes' :
+										<th scope="row">Is_Active</th>
+										<td>#{candidateBean.candidate.is_active==true? 'yes' :
 											'no'}</td>
-
+									</tr>
+									<tr>
+										<th scope="row">CV Link</th>
+										<td>
+											<!-- <h:outputLink value="#{request.contextPath}/CV_Uploads/#{candidateBean.candidate.cv_form}">#{candidateBean.candidate.cv_form != null ?
+												candidateBean.candidate.cv_form  : '-'}</h:outputLink> --> <h:link
+												outcome="/CV_Uploads/#{candidateBean.candidate.cv_form}"
+												value="#{candidateBean.candidate.cv_form}" />
+										</td>
 									</tr>
 
 								</tbody>
@@ -74,6 +77,7 @@
 					</div>
 				</div>
 			</div>
+
 			<div class="col-lg-6">
 				<div class="card shadow mb-4">
 					<div class="card-header py-3 bg-dark">
@@ -83,110 +87,96 @@
 					</div>
 					<div class="card-body">
 						<div class="table-responsive">
-
 							<table class="table table-borderless">
 								<tbody>
 									<tr>
+										<th scope="row">Key Skills</th>
+										<td>#{candidateBean.candidate.key_skills}</td>
+									</tr>
+									<tr>
+										<th scope="row">Availability</th>
+										<td>#{candidateBean.candidate.ava.description}</td>
+									</tr>
+									<tr>
 										<th scope="row">Entry By</th>
-										<td>#{joborderBean.joborder.entryBy.name}</td>
+										<td>#{candidateBean.candidate.entryBy.name}</td>
 
 									</tr>
 									<tr>
 										<th scope="row">Entry Date</th>
-										<td>#{joborderBean.joborder.entry_date}</td>
+										<td>#{candidateBean.candidate.entry_date}</td>
 
 									</tr>
 									<tr>
 										<th scope="row">Modify By</th>
-										<td>#{joborderBean.joborder.modifyBy.name}</td>
+										<td>#{candidateBean.candidate.modifyBy.name}</td>
 
 									</tr>
 									<tr>
 										<th scope="row">Modify Date</th>
-										<td>#{joborderBean.joborder.modifyDate}</td>
+										<td>#{candidateBean.candidate.modifyDate}</td>
 
 									</tr>
 
+
 								</tbody>
 							</table>
-
-
 						</div>
 					</div>
 				</div>
 			</div>
+
 			<div class="col-lg-12">
 				<div class="card shadow mb-4">
 					<div class="card-header py-3 bg-dark">
 						<h6 class="m-0 font-weight-bold text-warning">
-							<i class="fas fa-user"></i> Candidate Pipeline
+							<i class="fas fa-user"></i> Job Pipeline
 						</h6>
 					</div>
 					<div class="card-body">
 						<div class="table-responsive">
-							<h:dataTable id="table"
-								styleClass=" table table-striped table-bordered"
-								value="#{jobPipelineBean.joborder_jobPipelineList}" var="j">
+							<h:dataTable styleClass="table table-striped"
+								value="#{jobPipelineBean.jobPipelineList}" var="j">
 								<h:column>
 									<f:facet name="header">ID </f:facet>
 												#{j.id }
 											</h:column>
 								<h:column>
-									<f:facet name="header">Name</f:facet>
-									<h:link value="#{ j.candidate.name }"
-										outcome="/views/candidate-detail" styleClass="btn btn-outline-secondary">
-										<f:param name="candidateid" value="#{j.candidate.id}"></f:param>
+									<f:facet name="header">Job Position</f:facet>
+									<h:link value="#{ j.joborder.job_position }"
+										outcome="/views/joborder-detail">
+										<f:param name="joborderid" value="#{j.joborder.id}"></f:param>
 									</h:link>
 
 								</h:column>
-
 								<h:column>
-									<f:facet name="header">Added</f:facet>
+									<f:facet name="header">Company</f:facet>
+									<h:link value="#{ j.joborder.companyId.name }"
+										outcome="/views/company-detail">
+										<f:param name="companyid" value="#{ j.joborder.companyId.id}"></f:param>
+									</h:link>
+
+								</h:column>
+								<h:column>
+									<f:facet name="header">Add Date</f:facet>
 												#{ j.entry_date }
 											</h:column>
+
 								<h:column>
 									<f:facet name="header">Entry By</f:facet>
 												#{ j.entryBy.name }
 											</h:column>
 								<h:column>
-									<f:facet name="header">Status</f:facet>
+									<f:facet name="header">Current Status Code</f:facet>
 												#{ j.candidatejoborderstatus.short_description }
 											</h:column>
-								<h:column>
-									<f:facet name="header">Last Activity</f:facet>
-												---
-											</h:column>
-								<h:column>
-									<f:facet name="header">Action</f:facet>
-									<h:link value="" outcome="" styleClass="btn btn-primary">
-										<f:param name="jobpipelineid" value="#{j.id}"></f:param>
-										<i class="fas fa-edit"></i>
-									</h:link>
-								</h:column>
-								<!-- <h:column>
-												<h:form>
-													<h:commandLink
-														action="#{jobPipelineBean.removeJobpipeline(j.id)}"
-														value=""  styleClass="btn btn-danger">
-														<i class="fas fa-trash"></i>
-													</h:commandLink>
-												</h:form>
-											</h:column> -->
+
 							</h:dataTable>
-
-							<div class="float-left">
-								<h:link value="Add Candidate to This Job Order Pipeline"
-									outcome="/views/job-pipeline-add"
-									styleClass="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm float-right">
-									<i class="fas fa-plus"></i>
-									<f:param name="joborderid" value="#{joborderBean.joborder.id}"></f:param>
-								</h:link>
-							</div>
-
 						</div>
 					</div>
 				</div>
 			</div>
+
 
 		</div>
 

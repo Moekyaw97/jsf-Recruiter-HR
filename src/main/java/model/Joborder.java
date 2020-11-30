@@ -2,6 +2,7 @@ package model;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,11 +10,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Column;
 
 @Entity
-public class Joborder implements Serializable{
-
+@NamedQuery(name="Joborder.findbyCompany",query="SELECT j FROM Joborder j WHERE j.companyId.id = :companyid")
+@NamedQuery(name="Joborder.findAll",query="SELECT j FROM Joborder j")
+public class Joborder implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Id
@@ -21,20 +25,20 @@ public class Joborder implements Serializable{
 	private int id;
 	private String job_position;
 	/* @ColumnTransformer(name="job_description", columnDefinition="TEXT") */
-	
+
 	@Column(columnDefinition = "TEXT")
 	private String job_description;
 	private int basic_salary;
 	private int total_employee;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "companyId", referencedColumnName = "id")
 	private Company companyId;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "job_location", referencedColumnName = "id")
 	private Township job_location;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "entryBy", referencedColumnName = "id")
 	private Recruiter entryBy;
@@ -44,12 +48,27 @@ public class Joborder implements Serializable{
 	@JoinColumn(name = "modifyBy", referencedColumnName = "id")
 	private Recruiter modifyBy;
 	private LocalDate modifyDate;
-	
+
 	private String is_active;
+	
+	@OneToMany(mappedBy = "joborder")
+	private List<JobPipeline> jobpipeline;
 
 	public int getId() {
 		return id;
 	}
+	
+	
+
+	public List<JobPipeline> getJobpipeline() {
+		return jobpipeline;
+	}
+
+
+	public void setJobpipeline(List<JobPipeline> jobpipeline) {
+		this.jobpipeline = jobpipeline;
+	}
+
 
 	public void setId(int id) {
 		this.id = id;
@@ -142,8 +161,5 @@ public class Joborder implements Serializable{
 	public void setIs_active(String is_active) {
 		this.is_active = is_active;
 	}
-	
-	
-	
 
 }

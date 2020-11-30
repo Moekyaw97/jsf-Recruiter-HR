@@ -37,7 +37,11 @@ public class JoborderBean implements Serializable {
 		if (id != null) {
 
 			joborder = service.findById(Integer.parseInt(id));
-
+			if(joborder.getIs_active().equals("yes")) {
+				joborder.setIs_active("true");
+			}else {
+				joborder.setIs_active("false");
+			}
 		} else {
 
 			joborder = new Joborder();
@@ -47,8 +51,13 @@ public class JoborderBean implements Serializable {
 	}
 
 	public String saveJoborder() {
+		if(joborder.getIs_active().equals("true")) {
+			joborder.setIs_active("yes");
+		}else {
+			joborder.setIs_active("no");
+		}
 
-		joborder.setIs_active("yes");
+	
 		service.save(joborder);
 
 		return "/views/joborders?faces-redirect=true";
