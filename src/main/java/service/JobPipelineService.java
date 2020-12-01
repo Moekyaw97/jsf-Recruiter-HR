@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
+import model.Company;
 import model.JobPipeline;
 
 @Stateless
@@ -23,10 +24,6 @@ public class JobPipelineService {
 		return em.find(JobPipeline.class, id);
 	}
 
-	
-	
-	
-
 	public List<JobPipeline> findByCandidate(int candidateId) {
 		TypedQuery<JobPipeline> query = em.createNamedQuery("JobPipeline.findByCandidate", JobPipeline.class);
 		query.setParameter("candidateId", candidateId);
@@ -41,6 +38,12 @@ public class JobPipelineService {
 
 	public void save(JobPipeline jobPipeline) {
 		em.persist(jobPipeline);
+		
+	}
+
+	public void delete(int jid) {
+		JobPipeline j= em.find(JobPipeline.class, jid);
+		em.remove(j);
 		
 	}
 }

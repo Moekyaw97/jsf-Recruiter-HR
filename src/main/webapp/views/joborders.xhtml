@@ -34,7 +34,7 @@
 				</h:column>
 				<h:column>
 							<f:facet name="header">Company Name</f:facet>
-							<h:link value="#{j.companyId.name}" styleClass="btn btn-outline-info"
+							<h:link value="#{j.companyId.name}" styleClass="btn btn-outline-dark btn-sm"
 								outcome="/views/company-detail">
 								<f:param name="companyid" value="#{j.companyId.id}"></f:param>
 							</h:link>
@@ -43,7 +43,7 @@
 						<h:column>
 							<f:facet name="header">Position</f:facet>
 							<h:link value="#{j.job_position}" outcome="/views/joborder-detail"
-								styleClass="btn btn-outline-secondary">
+								styleClass="btn btn-outline-primary btn-sm">
 								<f:param name="joborderid" value="#{j.id}"></f:param>
 							</h:link>
 				

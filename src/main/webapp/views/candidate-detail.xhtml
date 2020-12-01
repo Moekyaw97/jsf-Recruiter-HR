@@ -143,8 +143,8 @@
 											</h:column>
 								<h:column>
 									<f:facet name="header">Job Position</f:facet>
-									<h:link value="#{ j.joborder.job_position }"
-										outcome="/views/joborder-detail">
+										<h:link value="#{ j.joborder.job_position }"
+										outcome="/views/joborder-detail" styleClass="btn btn-outline-primary btn-sm">
 										<f:param name="joborderid" value="#{j.joborder.id}"></f:param>
 									</h:link>
 
@@ -152,7 +152,7 @@
 								<h:column>
 									<f:facet name="header">Company</f:facet>
 									<h:link value="#{ j.joborder.companyId.name }"
-										outcome="/views/company-detail">
+										outcome="/views/company-detail" styleClass="btn btn-outline-dark btn-sm">
 										<f:param name="companyid" value="#{ j.joborder.companyId.id}"></f:param>
 									</h:link>
 

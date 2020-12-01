@@ -50,23 +50,7 @@ private CandidateService service;
 	}
 	public void uploadFile() {
 		
-		try {
-				String uploadFileName = cv_form.getSubmittedFileName();
-				
-				ServletContext context = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
-				
-				String dirPath = context.getRealPath("") + File.separator + "CV_Uploads";
-				File rootDir = new File(dirPath);
-				if(!rootDir.exists())
-					rootDir.mkdirs();
-				
-				cv_form.write(rootDir + File.separator + uploadFileName);
-				candidate.setCv_form(uploadFileName);
-		} catch (Exception e) {
-					FacesMessage message = new FacesMessage(e.getMessage());
-					FacesContext.getCurrentInstance().addMessage(null, message);
-					return;
-				}
+	
 	}
 	public String removeCandidate(int cid) {
 		service.delete(cid);
@@ -75,6 +59,23 @@ private CandidateService service;
 	}
 
 	public String saveCandidate() {
+		try {
+			String uploadFileName = cv_form.getSubmittedFileName();
+			
+			ServletContext context = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
+			
+			String dirPath = context.getRealPath("") + File.separator + "CV_Uploads";
+			File rootDir = new File(dirPath);
+			if(!rootDir.exists())
+				rootDir.mkdirs();
+			
+			cv_form.write(rootDir + File.separator + uploadFileName);
+			candidate.setCv_form(uploadFileName);
+	} catch (Exception e) {
+				FacesMessage message = new FacesMessage(e.getMessage());
+				FacesContext.getCurrentInstance().addMessage(null, message);
+			
+			}
 		if(candidate.getIs_active().equals("true")) {
 			candidate.setIs_active("yes");
 		}else {

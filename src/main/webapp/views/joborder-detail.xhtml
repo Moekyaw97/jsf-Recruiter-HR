@@ -126,7 +126,7 @@
 						<div class="table-responsive">
 							<h:dataTable id="table"
 								styleClass=" table table-striped table-bordered"
-								value="#{jobPipelineBean.joborder_jobPipelineList}" var="j">
+								value="#{jobPipelineBean.jjList}" var="j">
 								<h:column>
 									<f:facet name="header">ID </f:facet>
 												#{j.id }
@@ -134,7 +134,8 @@
 								<h:column>
 									<f:facet name="header">Name</f:facet>
 									<h:link value="#{ j.candidate.name }"
-										outcome="/views/candidate-detail" styleClass="btn btn-outline-secondary">
+										outcome="/views/candidate-detail"
+										styleClass="btn btn-outline-primary btn-sm">
 										<f:param name="candidateid" value="#{j.candidate.id}"></f:param>
 									</h:link>
 
@@ -158,26 +159,26 @@
 											</h:column>
 								<h:column>
 									<f:facet name="header">Action</f:facet>
-									<h:link value="" outcome="" styleClass="btn btn-primary">
+									<h:link value="" outcome="" styleClass="btn btn-primary btn-sm">
 										<f:param name="jobpipelineid" value="#{j.id}"></f:param>
-										<i class="fas fa-edit"></i>
+										<i class="fas fa-user-edit"></i>
 									</h:link>
 								</h:column>
-								<!-- <h:column>
-												<h:form>
-													<h:commandLink
-														action="#{jobPipelineBean.removeJobpipeline(j.id)}"
-														value=""  styleClass="btn btn-danger">
-														<i class="fas fa-trash"></i>
-													</h:commandLink>
-												</h:form>
-											</h:column> -->
+								<h:column>
+									<h:form>
+										<h:commandLink
+											action="#{jobPipelineBean.removeJobpipeline(j.id)}" value=""
+											styleClass="btn btn-danger btn-sm">
+											<i class="fas fa-user-minus"></i>
+										</h:commandLink>
+									</h:form>
+								</h:column>
 							</h:dataTable>
 
 							<div class="float-left">
 								<h:link value="Add Candidate to This Job Order Pipeline"
 									outcome="/views/job-pipeline-add"
-									styleClass="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm float-right">
+									styleClass="btn btn-sm btn-primary shadow-sm float-right">
 									<i class="fas fa-plus"></i>
 									<f:param name="joborderid" value="#{joborderBean.joborder.id}"></f:param>
 								</h:link>
