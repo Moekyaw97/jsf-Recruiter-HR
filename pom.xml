@@ -45,6 +45,13 @@
 			<version>0.8.9</version>
 		</dependency>
 
+		<dependency>
+			<groupId>org.mozilla</groupId>
+			<artifactId>rhino</artifactId>
+			<version>1.7.12</version>
+		</dependency>
+
+
 	</dependencies>
 	<build>
 		<finalName>

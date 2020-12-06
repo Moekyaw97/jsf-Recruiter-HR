@@ -7,7 +7,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
-import model.Company;
 import model.JobPipeline;
 
 @Stateless
@@ -41,8 +40,8 @@ public class JobPipelineService {
 		
 	}
 
-	public void delete(int jid) {
-		JobPipeline j= em.find(JobPipeline.class, jid);
+	public void delete(int id) {
+		JobPipeline j= em.find(JobPipeline.class, id);
 		em.remove(j);
 		
 	}

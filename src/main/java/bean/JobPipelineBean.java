@@ -64,14 +64,14 @@ public class JobPipelineBean implements Serializable{
 				jobpipeline = service.findById(Integer.parseInt(canid));
 				jobPipelineList = service.findByCandidate(jobpipeline.getId());
 			}else {
-				 cjList = candidateService.getUndeployedCandidates(Integer.parseInt(jobid));
+				 cjList = candidateService.getUnworkedCandidates(Integer.parseInt(jobid));
 				 for (Candidate candidate : cjList) 
 				 { 
 					 checkedCandidates.put(candidate.getId(), false);
 					
 					 }
 				 for (Entry<Integer, Boolean> entry : checkedCandidates.entrySet()) {
-					
+					 System.out.println("key: "+ entry.getKey() +"value:" +entry.getValue() );
 				 }
 				
 			}
@@ -94,7 +94,7 @@ public class JobPipelineBean implements Serializable{
 	
 	public String saveJobPipline() {
         for (Entry<Integer, Boolean> can : checkedCandidates.entrySet()) {
-        
+        	System.out.println("key: "+ can.getKey() +"value:" +can.getValue() );
                 if(can.getValue() == true) {
                 	Candidate candidate = candidateService.findById( can.getKey());
                 	JobPipeline jobPipeline = new JobPipeline();
@@ -111,10 +111,10 @@ public class JobPipelineBean implements Serializable{
 		
 		
 	}
-	public String removeJobpipeline(int jid) {
+	public String removeJobpipeline(int id) {
 	
-		service.delete(jid);
-		return "/views/joborder-detail?faces-redirect=true";
+		service.delete(id);
+		 return "/views/joborder-detail?faces-redirect=true&joborderid=" + joborder.getId();
 
 	}
 

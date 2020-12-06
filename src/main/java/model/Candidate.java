@@ -15,7 +15,7 @@ import javax.persistence.OneToMany;
 
 @Entity
 @NamedQuery(name = "Candidate.findAll", query = "SELECT c FROM Candidate c")
-@NamedQuery(name = "Candidate.getUndeployedCandidates", query = "SELECT c FROM Candidate c WHERE c.id NOT IN ( select candidate.id from JobPipeline p where p.joborder.id = :joborderid)")
+@NamedQuery(name = "Candidate.getUnworkedCandidates", query = "SELECT c FROM Candidate c WHERE c.id NOT IN ( select candidate.id from JobPipeline p where p.joborder.id = :joborderid)")
 public class Candidate implements Serializable {
 
 	private static final long serialVersionUID = 1L;

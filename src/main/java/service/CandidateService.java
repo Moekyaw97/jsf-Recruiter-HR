@@ -52,8 +52,8 @@ public class CandidateService {
 		em.remove(c);
 	}
 
-	public List<Candidate> getUndeployedCandidates(int joborderid) {
-		TypedQuery<Candidate> query = em.createNamedQuery("Candidate.getUndeployedCandidates", Candidate.class);
+	public List<Candidate> getUnworkedCandidates(int joborderid) {
+		TypedQuery<Candidate> query = em.createNamedQuery("Candidate.getUnworkedCandidates", Candidate.class);
 		query.setParameter("joborderid", joborderid);
 		return query.getResultList();
 	}
